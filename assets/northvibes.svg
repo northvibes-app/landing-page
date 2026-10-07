@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">NorthVibes Logo</title>
+  <desc id="desc">Compass-style NorthVibes symbol with letter N and north arrow. Pure SVG with transparent background.</desc>
+
+  <!-- Palette: Navy #032B49 | Teal #05AC9F -->
+
+  <!-- Compass ring -->
+  <circle
+    cx="512" cy="500" r="305"
+    fill="none"
+    stroke="#032B49"
+    stroke-width="48"
+    stroke-linecap="butt"
+    stroke-dasharray="350 129.09"
+    transform="rotate(-45 512 500)"/>
+
+  <!-- North needle: slimmer spear shape, closer to the original PNG -->
+  <path
+    d="M512 72
+       L570 350
+       L585 505
+       L463 355
+       Z"
+    fill="#05AC9F"/>
+
+  <!-- Cardinal points -->
+  <path d="M170 500 L335 438 L335 562 Z" fill="#032B49"/>
+  <path d="M854 500 L689 438 L689 562 Z" fill="#032B49"/>
+  <path d="M512 904 L450 700 L574 700 Z" fill="#032B49"/>
+
+  <!-- Stylized N -->
+  <path
+    d="M328 308
+       H420
+       L612 526
+       V308
+       H706
+       V706
+       H612
+       L420 488
+       V706
+       H328
+       Z"
+    fill="#032B49"/>
+</svg>

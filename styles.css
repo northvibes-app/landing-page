@@ -1,0 +1,117 @@
+:root { color-scheme: dark; }
+
+* { box-sizing: border-box; }
+
+html,
+body,
+main {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100dvh;
+  background: #020817;
+}
+
+main {
+  position: relative;
+  display: grid;
+  min-height: 100dvh;
+  place-items: center;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 72% 64% at 50% 50%, #07172a 0%, #03101e 42%, #010712 76%, #00040b 100%);
+}
+
+.atmosphere,
+.atmosphere::before,
+.atmosphere::after,
+.halo,
+.orbits,
+.orbits::before,
+.orbits::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.atmosphere {
+  z-index: -4;
+  background:
+    radial-gradient(circle at 18% 15%, rgba(0, 210, 200, .12), transparent 26%),
+    radial-gradient(circle at 82% 76%, rgba(0, 100, 220, .10), transparent 30%);
+  animation: atmosphere-breathe 10s ease-in-out infinite alternate;
+}
+
+.atmosphere::before {
+  content: "";
+  background: radial-gradient(ellipse at center, transparent 42%, rgba(0, 3, 10, .28) 72%, rgba(0, 2, 7, .72) 100%);
+}
+
+.atmosphere::after {
+  content: "";
+  opacity: .15;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.halo {
+  z-index: -2;
+  inset: auto;
+  width: min(48vw, 660px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 191, 215, .08), rgba(0, 126, 190, .025) 42%, transparent 70%);
+  filter: blur(10px);
+}
+
+.orbits {
+  z-index: -3;
+  inset: 50% auto auto 50%;
+  width: clamp(420px, 48vw, 680px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(76, 191, 208, .075);
+  border-radius: 50%;
+  box-shadow: 0 0 0 115px rgba(45, 128, 171, .03), 0 0 0 260px rgba(28, 98, 145, .022);
+  -webkit-mask-image: radial-gradient(circle, transparent 0 19%, #000 20% 74%, transparent 92%);
+  mask-image: radial-gradient(circle, transparent 0 19%, #000 20% 74%, transparent 92%);
+}
+
+.orbits::before,
+.orbits::after {
+  content: "";
+  inset: 16%;
+  border: 1px solid rgba(0, 213, 200, .055);
+  border-radius: 50%;
+}
+
+.orbits::before { transform: rotateX(65deg) rotateZ(-24deg); }
+.orbits::after { inset: -25%; transform: rotateX(67deg) rotateZ(31deg); }
+
+.logo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: clamp(140px, 22vw, 280px);
+  height: auto;
+  filter: drop-shadow(0 0 18px rgba(0, 210, 200, .15)) drop-shadow(0 0 45px rgba(0, 90, 180, .10));
+  animation: logo-enter 1s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes logo-enter { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: scale(1); } }
+@keyframes atmosphere-breathe { from { opacity: .82; } to { opacity: 1; } }
+
+@media (max-width: 600px) {
+  .logo { width: clamp(140px, 43vw, 210px); }
+  .orbits { width: 120vw; }
+  .halo { width: 110vw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atmosphere,
+  .logo { animation: none; }
+}
