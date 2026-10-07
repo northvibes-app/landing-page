@@ -12,6 +12,10 @@ Minimal static landing page for `northvibes.app`: the only visible page content 
 
 ## Deployment
 
-The live origin is `nv-j26-web-01`, document root `/var/www/northvibes`. TLS uses Let's Encrypt for both `northvibes.app` and `www.northvibes.app`; Cloudflare proxies DNS and provides edge TLS.
+## Live deployment
+
+**LIVE VERIFIED 2026-10-07:** the static site is served by Nginx on `nv-j26-web-01` from `/var/www/northvibes`. Cloudflare proxies both DNS records and runs in **Full (strict)** mode with a zone minimum TLS version of 1.2. The origin has a Let's Encrypt certificate for `northvibes.app` and `www.northvibes.app`, expiring 2027-01-05; `certbot.timer` is enabled for renewal.
+
+HTTP redirects to HTTPS and `www.northvibes.app` redirects to the canonical `northvibes.app`. The Nginx configuration adds CSP, `nosniff`, no-referrer, restrictive permissions policy, frame denial, and static cache controls.
 
 No analytics, third-party scripts, external fonts, trackers, cookies, JavaScript, or external assets are used.
