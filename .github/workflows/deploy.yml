@@ -1,0 +1,58 @@
+name: Deploy landing page
+
+on:
+  push:
+    branches: [main]
+    paths: ['index.html', 'styles.css', 'assets/**', 'deploy/**', '.github/workflows/deploy.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: northvibes-landing-production
+  cancel-in-progress: false
+
+env:
+  RESOURCE_GROUP: northvibes-app
+  VM_NAME: nv-j26-web-01
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate static release
+        run: |
+          test -f index.html
+          test -f styles.css
+          test -f assets/favicon.ico
+          test -f deploy/nginx/northvibes.app.conf
+          ! grep -R --include='*.html' --include='*.css' '<script' .
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Deploy with Azure Run Command
+        run: |
+          az vm run-command invoke --resource-group "$RESOURCE_GROUP" --name "$VM_NAME" \
+            --command-id RunShellScript --scripts "$(cat <<'SCRIPT'
+          set -euo pipefail
+          release='${{ github.sha }}'
+          stage=$(mktemp -d /var/www/.northvibes-stage.XXXXXX)
+          trap 'rm -rf "$stage"' EXIT
+          curl -fsSL "https://github.com/northvibes-app/landing-page/archive/$release.tar.gz" | tar -xz --strip-components=1 -C "$stage"
+          test -f "$stage/index.html" && test -f "$stage/styles.css" && test -f "$stage/assets/favicon.ico"
+          install -d -m 0755 /var/www/northvibes
+          cp -a "$stage/index.html" "$stage/styles.css" "$stage/assets" /var/www/northvibes/
+          install -m 0644 "$stage/deploy/nginx/northvibes.app.conf" /etc/nginx/sites-available/northvibes.app
+          nginx -t
+          systemctl reload nginx
+          curl --fail --silent --show-error --resolve northvibes.app:443:127.0.0.1 -k https://northvibes.app/ >/dev/null
+          SCRIPT
+          )"
+      - name: Verify public endpoint
+        run: curl --fail --silent --show-error --max-time 30 https://northvibes.app/ >/dev/null
