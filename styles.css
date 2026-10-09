@@ -101,12 +101,31 @@ main {
   gap: .65rem;
 }
 
+.auth-controls a,
 .auth-controls button {
   border: 1px solid rgba(89, 214, 224, .35);
   border-radius: 999px;
   padding: .55rem 1rem;
-  color: rgba(216, 251, 255, .65);
+  font: inherit;
+  color: rgba(216, 251, 255, .85);
   background: rgba(4, 24, 43, .68);
+}
+
+.auth-controls a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.auth-controls a:hover,
+.auth-controls a:focus-visible {
+  border-color: rgba(89, 214, 224, .8);
+  color: #fff;
+  outline: 2px solid rgba(89, 214, 224, .65);
+  outline-offset: 2px;
+}
+
+.auth-controls button:disabled {
+  color: rgba(216, 251, 255, .5);
   cursor: not-allowed;
 }
 
