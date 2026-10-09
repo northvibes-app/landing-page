@@ -18,4 +18,4 @@ Minimal static landing page for `northvibes.app`: the only visible page content 
 
 HTTP redirects to HTTPS and `www.northvibes.app` redirects to the canonical `northvibes.app`. The Nginx configuration adds CSP, `nosniff`, no-referrer, restrictive permissions policy, frame denial, and static cache controls.
 
-No analytics, third-party scripts, external fonts, trackers, cookies, JavaScript, or external assets are used.
+The landing page remains static and contains no analytics, third-party scripts, external fonts, or trackers. The Login link starts the same-origin server-side OIDC flow; the BFF sets only secure first-party authentication cookies after login. The Register control stays disabled until email verification is ready.

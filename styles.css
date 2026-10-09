@@ -92,6 +92,43 @@ main {
 .orbits::before { transform: rotateX(65deg) rotateZ(-24deg); }
 .orbits::after { inset: -25%; transform: rotateX(67deg) rotateZ(31deg); }
 
+.auth-controls {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 2;
+  display: flex;
+  gap: .65rem;
+}
+
+.auth-controls a,
+.auth-controls button {
+  border: 1px solid rgba(89, 214, 224, .35);
+  border-radius: 999px;
+  padding: .55rem 1rem;
+  font: inherit;
+  color: rgba(216, 251, 255, .85);
+  background: rgba(4, 24, 43, .68);
+}
+
+.auth-controls a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.auth-controls a:hover,
+.auth-controls a:focus-visible {
+  border-color: rgba(89, 214, 224, .8);
+  color: #fff;
+  outline: 2px solid rgba(89, 214, 224, .65);
+  outline-offset: 2px;
+}
+
+.auth-controls button:disabled {
+  color: rgba(216, 251, 255, .5);
+  cursor: not-allowed;
+}
+
 .logo {
   position: relative;
   z-index: 1;
@@ -109,6 +146,7 @@ main {
   .logo { width: clamp(140px, 43vw, 210px); }
   .orbits { width: 120vw; }
   .halo { width: 110vw; }
+  .auth-controls { top: 1rem; right: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
