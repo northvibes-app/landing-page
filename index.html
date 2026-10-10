@@ -46,11 +46,11 @@
           </div>
 
           <div class="provider-list" aria-label="Sign-in choices">
-            <button class="auth-button auth-button--provider" type="button" disabled aria-describedby="provider-status">
+            <a class="auth-button auth-button--provider" href="/auth/login?provider=microsoft" aria-describedby="provider-status">
               <svg class="provider-icon microsoft-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 2h9v9H2zM13 2h9v9h-9zM2 13h9v9H2zM13 13h9v9h-9z"/></svg>
               <span>Continue with Microsoft</span>
-              <span class="provider-state">Setup pending</span>
-            </button>
+              <span class="provider-state">Available</span>
+            </a>
             <button class="auth-button auth-button--provider" type="button" disabled aria-describedby="provider-status">
               <svg class="provider-icon github-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.23-1.63-1.23-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.7 1.16 1.7 1.16.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.22 1.16-3-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.1-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.68.11 2.96.72.78 1.16 1.78 1.16 3 0 4.27-2.61 5.21-5.09 5.49.4.35.75 1.02.75 2.06v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg>
               <span>Continue with GitHub</span>
@@ -62,7 +62,7 @@
               <span class="provider-state">Setup pending</span>
             </button>
           </div>
-          <p class="setup-note" id="provider-status">Social sign-in will be available once each provider’s secure app credentials are configured.</p>
+          <p class="setup-note" id="provider-status">Microsoft sign-in is available. GitHub and Google sign-in are still being prepared.</p>
 
           <div class="auth-divider" role="separator" aria-label="Or continue with email"><span>OR</span></div>
 
