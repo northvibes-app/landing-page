@@ -102,7 +102,8 @@ button:focus-visible, a:focus-visible { outline: 3px solid #8af5ed; outline-offs
 .signup-copy { display: grid; gap: 4px; }
 .signup-copy strong { color: #e8f2f6; font-size: .83rem; }
 .signup-copy span { max-width: 235px; color: var(--muted-soft); font-size: .72rem; line-height: 1.45; }
-.signup-button { min-height: 43px; flex: 0 0 auto; border: 1px solid rgba(115, 163, 183, .25); border-radius: 10px; padding: 0 13px; color: #9bb0bd; background: rgba(255, 255, 255, .025); font-size: .75rem; font-weight: 650; cursor: not-allowed; }
+.signup-button { display: inline-flex; min-height: 43px; flex: 0 0 auto; align-items: center; border: 1px solid rgba(93, 221, 212, .52); border-radius: 10px; padding: 0 13px; color: #c8fffa; background: rgba(45, 167, 169, .16); font-size: .75rem; font-weight: 650; text-decoration: none; transition: border-color .18s ease, background-color .18s ease, transform .18s ease; }
+.signup-button:hover, .signup-button:focus-visible { border-color: #76e8df; background: rgba(45, 167, 169, .28); transform: translateY(-1px); }
 .security-note { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 19px 0 0; color: #8ba3b1; font-size: .7rem; line-height: 1.5; text-align: center; }
 .security-icon { display: grid; width: 16px; height: 16px; flex: 0 0 16px; place-items: center; border: 1px solid rgba(93, 218, 190, .4); border-radius: 50%; color: #72ddc2; font-size: .62rem; font-weight: 800; }
 .page-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 4px; color: #72899a; font-size: .72rem; }
