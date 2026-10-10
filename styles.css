@@ -82,8 +82,9 @@ button:focus-visible, a:focus-visible { outline: 3px solid #8af5ed; outline-offs
 .card-heading p { margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.55; }
 .provider-list { display: grid; gap: 10px; }
 .auth-button { position: relative; display: flex; width: 100%; min-height: 54px; align-items: center; justify-content: flex-start; gap: 13px; border: 1px solid rgba(181, 215, 229, .2); border-radius: 12px; padding: 12px 15px; color: #edf7fb; background: rgba(11, 29, 47, .72); font-size: .91rem; font-weight: 630; line-height: 1.35; text-align: left; text-decoration: none; transition: border-color .18s ease, background-color .18s ease, transform .18s ease, box-shadow .18s ease; }
-.auth-button--provider { cursor: not-allowed; }
-.auth-button--provider:disabled { border-color: rgba(171, 201, 214, .14); color: #d9e5eb; background: rgba(9, 24, 40, .52); opacity: .86; }
+.auth-button--provider { cursor: pointer; }
+.auth-button--provider:not(:disabled):hover, .auth-button--provider:not(:disabled):focus-visible { border-color: rgba(93, 221, 212, .7); color: #fff; background: rgba(17, 46, 68, .9); }
+.auth-button--provider:disabled { border-color: rgba(171, 201, 214, .14); color: #d9e5eb; background: rgba(9, 24, 40, .52); opacity: .86; cursor: not-allowed; }
 .auth-button--email { border-color: transparent; color: #04121c; background: linear-gradient(105deg, #74e2d7, #42c6d8); box-shadow: 0 9px 24px rgba(5, 172, 159, .16); }
 .auth-button--email:hover { transform: translateY(-1px); background: linear-gradient(105deg, #8af0e3, #60d8e4); box-shadow: 0 12px 28px rgba(5, 172, 159, .24); }
 .provider-icon { display: block; width: 21px; height: 21px; flex: 0 0 21px; }
